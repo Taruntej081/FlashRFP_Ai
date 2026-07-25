@@ -19,6 +19,74 @@ from dotenv import load_dotenv
 base_dir = os.path.dirname(os.path.abspath(__file__))
 load_dotenv(os.path.join(base_dir, ".env"), override=True)
 
+def _cfg(key: str, default: str = "") -> str:
+    """Read from st.secrets (Streamlit Cloud) first, then os.environ/.env."""
+    try:
+        val = st.secrets.get(key, None)
+        if val:
+            return str(val)
+    except Exception:
+        pass
+    return os.getenv(key, default)
+
+# ── Cloud Bootstrap ────────────────────────────────────────────────────────────
+# On Streamlit Cloud, admin_data/ and auth_config.json are not committed.
+# Auto-create them from st.secrets / env vars on first boot.
+_ADMIN_USERNAME = _cfg("ADMIN_USERNAME", "admin")
+# Default hash = bcrypt of 'admin123' — override via ADMIN_PASSWORD_HASH secret
+_ADMIN_HASH = _cfg(
+    "ADMIN_PASSWORD_HASH",
+    "$2b$12$EZTELUZjs78b28YedCXD3OgAl5/SvQcVtUsy48huU5THS4MzR2CBe"
+)
+
+_config_file = os.path.join(base_dir, "auth_config.json")
+if not os.path.exists(_config_file):
+    _default_cfg = {
+        "credentials": {
+            "usernames": {
+                _ADMIN_USERNAME: {
+                    "email": f"{_ADMIN_USERNAME}@flashrfp.ai",
+                    "name": "Administrator",
+                    "password": _ADMIN_HASH
+                }
+            }
+        },
+        "cookie": {
+            "expiry_days": 30,
+            "key": "flashrfp_cookie_key_secret_987654",
+            "name": "flashrfp_auth_cookie"
+        }
+    }
+    with open(_config_file, "w") as _f:
+        json.dump(_default_cfg, _f, indent=4)
+
+_admin_data_dir = os.path.join(base_dir, "admin_data")
+_users_file = os.path.join(_admin_data_dir, "users.json")
+if not os.path.exists(_users_file):
+    os.makedirs(_admin_data_dir, exist_ok=True)
+    _now_str = __import__('datetime').datetime.now().strftime("%Y-%m-%d")
+    _bootstrap_users = {
+        _ADMIN_USERNAME: {
+            "username": _ADMIN_USERNAME,
+            "name": "Administrator",
+            "email": f"{_ADMIN_USERNAME}@flashrfp.ai",
+            "company": "FlashRFP Internal",
+            "plan": "enterprise",
+            "status": "active",
+            "is_admin": True,
+            "created_at": _now_str,
+            "trial_expires_at": None,
+            "subscription_id": None,
+            "responses_this_month": 0,
+            "documents_count": 0,
+            "batches_this_month": 0,
+            "last_active": _now_str,
+            "monthly_amount": 0,
+        }
+    }
+    with open(_users_file, "w") as _uf:
+        json.dump(_bootstrap_users, _uf, indent=2)
+
 # Smart DB layer: uses Supabase when keys are set, JSON fallback otherwise
 try:
     import supabase_client as _supa
@@ -114,9 +182,9 @@ if not st.session_state["authentication_status"]:
                     user_record = db.get_user(input_username)
                     
                     if user_record and user_record.get("is_admin") is True:
-                        # Fetch hashed password from local config to match registration hashes
+                        # Fetch hashed password from auth_config.json
                         try:
-                            with open(config_file, "r") as f:
+                            with open(_config_file, "r") as f:
                                 ac = json.load(f)
                             stored_pw = ac["credentials"]["usernames"].get(input_username, {}).get("password", "")
                         except Exception:
