@@ -1,0 +1,24 @@
+# Environment & Secrets
+.env
+auth_config.json
+
+# Python
+.venv/
+__pycache__/
+*.pyc
+*.pyo
+
+# Local databases & generated files
+chroma_db/
+test_chroma_db/
+test_batch_chroma_db/
+admin_data/
+*.db
+audit_log.jsonl
+
+# Temp files
+*.log
+temp_uploads/
+temp_rfp_*
+test_doc*.docx
+test_template.docx

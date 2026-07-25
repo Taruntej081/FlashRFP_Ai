@@ -1,0 +1,2896 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FlashRFP.ai | Agentic AI RFP Software to Win Deals</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --font-sans: 'Inter', sans-serif;
+            --color-white: #ffffff;
+            --color-bg: #f8fafc;
+            --color-navy-950: #070f1e;
+            --color-navy-900: #0f172a;
+            --color-navy-800: #1e293b;
+            --color-gray-900: #0f172a;
+            --color-gray-600: #475569;
+            --color-gray-300: #e2e8f0;
+            
+            --color-brand-100: #dbeafe;
+            --color-brand-200: #bfdbfe;
+            --color-brand-600: #0066ff; /* AutoRFP Blue */
+            --color-brand-700: #0052cc;
+            --color-brand-800: #1e3a8a;
+            --color-accent-500: #00c6ff;
+            --color-brand-light: #f0f6ff;
+            
+            --shadow-card: 0 10px 30px -5px rgba(0, 102, 255, 0.03), 0 8px 10px -6px rgba(0, 0, 0, 0.02);
+            --shadow-hover: 0 20px 40px -5px rgba(0, 102, 255, 0.08), 0 12px 16px -6px rgba(0, 0, 0, 0.03);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            font-family: var(--font-sans);
+            background-color: var(--color-bg);
+            color: var(--color-gray-900);
+        }
+
+        body {
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        /* Utility Components */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 0.875rem;
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+            cursor: pointer;
+            border: none;
+            gap: 0.5rem;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--color-brand-600) 0%, var(--color-brand-700) 100%);
+            color: var(--color-white);
+            box-shadow: 0 4px 14px rgba(0, 102, 255, 0.25);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0, 102, 255, 0.4);
+            filter: brightness(1.05);
+        }
+
+        .btn-secondary {
+            background-color: var(--color-white);
+            border: 1px solid var(--color-gray-300);
+            color: var(--color-navy-900);
+        }
+
+        .btn-secondary:hover {
+            border-color: var(--color-brand-600);
+            color: var(--color-brand-600);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-card);
+        }
+
+        .badge-eyebrow {
+            display: inline-flex;
+            align-items: center;
+            font-size: 0.72rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            color: var(--color-brand-700);
+            background-color: var(--color-brand-light);
+            padding: 0.35rem 0.85rem;
+            border-radius: 30px;
+            margin-bottom: 1.25rem;
+            border: 1px solid rgba(0, 102, 255, 0.2);
+        }
+
+        /* Header Navigation */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background-color: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(0, 102, 255, 0.08);
+            z-index: 1000;
+            transition: all 0.3s;
+        }
+
+        .nav-wrapper {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 4.5rem;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.65rem;
+            font-weight: 900;
+            font-size: 1.45rem;
+            color: var(--color-navy-900);
+            letter-spacing: -0.03em;
+        }
+
+        .logo-icon-svg {
+            display: block;
+            width: 32px;
+            height: 32px;
+            border-radius: 8px;
+        }
+
+        .nav-menu {
+            display: flex;
+            align-items: center;
+            list-style: none;
+            gap: 1.5rem;
+        }
+
+        .nav-item {
+            position: relative;
+        }
+
+        .nav-link {
+            font-size: 0.92rem;
+            font-weight: 600;
+            color: var(--color-gray-600);
+            padding: 0.5rem 0.75rem;
+            border-radius: 6px;
+            transition: color 0.2s, background-color 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 0.25rem;
+        }
+
+        .nav-link:hover, .nav-item:hover .nav-link {
+            color: var(--color-brand-600);
+            background-color: var(--color-brand-light);
+        }
+
+        /* Mega Menus */
+        .mega-menu {
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            transform: translateX(-50%) translateY(10px);
+            background-color: var(--color-white);
+            border: 1px solid var(--color-brand-100);
+            border-radius: 16px;
+            box-shadow: var(--shadow-hover);
+            padding: 0.75rem;
+            display: flex;
+            gap: 1.25rem;
+            width: 580px;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .nav-item:hover .mega-menu {
+            opacity: 1;
+            visibility: visible;
+            transform: translateX(-50%) translateY(0);
+        }
+
+        .mega-left {
+            width: 220px;
+            background: linear-gradient(135deg, var(--color-brand-light) 0%, var(--color-brand-light) 100%);
+            padding: 1.5rem 1.25rem;
+            border-radius: 12px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .mega-left-title {
+            font-size: 0.75rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: var(--color-brand-700);
+            margin-bottom: 0.5rem;
+        }
+
+        .mega-left-desc {
+            font-size: 0.8rem;
+            color: var(--color-gray-600);
+            line-height: 1.5;
+            margin-bottom: 1.5rem;
+        }
+
+        .mega-left-action {
+            font-size: 0.8rem;
+            font-weight: 700;
+            color: var(--color-brand-600);
+            display: flex;
+            align-items: center;
+            gap: 0.25rem;
+        }
+
+        .mega-right {
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 0.25rem;
+            width: 320px;
+        }
+
+        .mega-item {
+            display: flex;
+            gap: 0.75rem;
+            padding: 0.75rem 1rem;
+            border-radius: 10px;
+            transition: background-color 0.2s;
+        }
+
+        .mega-item:hover {
+            background-color: var(--color-brand-light);
+        }
+
+        .mega-icon {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 2rem;
+            height: 2rem;
+            border-radius: 8px;
+            background-color: var(--color-brand-light);
+            color: var(--color-brand-600);
+            flex-shrink: 0;
+        }
+
+        .mega-info {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .mega-title {
+            font-size: 0.875rem;
+            font-weight: 700;
+            color: var(--color-navy-900);
+            display: flex;
+            align-items: center;
+            gap: 0.25rem;
+        }
+
+        .mega-title svg.arrow-icon {
+            opacity: 0;
+            transform: translateX(-4px);
+            transition: all 0.2s;
+            color: var(--color-brand-600);
+        }
+
+        .mega-item:hover .mega-title svg.arrow-icon {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .mega-desc {
+            font-size: 0.75rem;
+            color: var(--color-gray-600);
+            margin-top: 0.15rem;
+        }
+
+        .nav-actions {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .login-link {
+            font-size: 0.92rem;
+            font-weight: 600;
+            color: var(--color-gray-600);
+            padding: 0.5rem 1rem;
+            transition: color 0.2s;
+        }
+
+        .login-link:hover {
+            color: var(--color-brand-600);
+        }
+
+        /* Hero Section */
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .hero {
+            position: relative;
+            padding: 10rem 0 7rem;
+            background: linear-gradient(-45deg, #f0f6ff 0%, #ffffff 30%, #e0f2fe 70%, #faf5ff 100%);
+            background-size: 400% 400%;
+            animation: gradientShift 15s ease infinite;
+            text-align: center;
+            overflow: hidden;
+        }
+
+        /* Dotted Grid Overlay */
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: radial-gradient(rgba(0, 102, 255, 0.04) 1px, transparent 1px);
+            background-size: 24px 24px;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        /* Ambient glows */
+        .hero-glow-1 {
+            position: absolute;
+            top: 10%;
+            left: 15%;
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, rgba(0, 198, 255, 0.12) 0%, transparent 70%);
+            filter: blur(50px);
+            z-index: 0;
+            pointer-events: none;
+            animation: floatOrb1 20s infinite ease-in-out;
+        }
+
+        .hero-glow-2 {
+            position: absolute;
+            bottom: 10%;
+            right: 15%;
+            width: 350px;
+            height: 350px;
+            background: radial-gradient(circle, rgba(99, 102, 241, 0.08) 0%, transparent 70%);
+            filter: blur(60px);
+            z-index: 0;
+            pointer-events: none;
+            animation: floatOrb2 25s infinite ease-in-out;
+        }
+
+        @keyframes floatOrb1 {
+            0%, 100% { transform: translateY(0) scale(1); }
+            50% { transform: translateY(-20px) scale(1.08); }
+        }
+
+        @keyframes floatOrb2 {
+            0%, 100% { transform: translateY(0) scale(1.08); }
+            50% { transform: translateY(20px) scale(0.92); }
+        }
+
+        .hero-content-wrapper {
+            position: relative;
+            z-index: 2;
+        }
+
+        /* Hero Trust Badges styling */
+        .hero-trust-badges {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-top: -2.5rem;
+            margin-bottom: 3.5rem;
+            flex-wrap: wrap;
+        }
+
+        .hero-trust-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.45rem;
+            font-size: 0.8rem;
+            font-weight: 700;
+            color: var(--color-gray-600);
+            background-color: var(--color-white);
+            border: 1px solid var(--color-gray-300);
+            padding: 0.45rem 1rem;
+            border-radius: 30px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.02);
+            transition: transform 0.2s, border-color 0.2s;
+        }
+
+        .hero-trust-badge:hover {
+            transform: translateY(-2px);
+            border-color: var(--color-brand-600);
+        }
+
+        .hero-trust-badge svg {
+            color: var(--color-brand-600);
+        }
+
+        .hero-title {
+            font-size: 3.5rem;
+            font-weight: 800;
+            color: var(--color-navy-900);
+            letter-spacing: -0.04em;
+            line-height: 1.15;
+            max-width: 850px;
+            margin: 0 auto 1.5rem;
+        }
+
+        .text-roller {
+            color: var(--color-brand-600);
+            position: relative;
+            display: inline-block;
+            min-width: 140px;
+            text-align: left;
+            vertical-align: bottom;
+            overflow: hidden;
+            height: 1.2em;
+        }
+
+        .roller-wrapper {
+            position: absolute;
+            display: flex;
+            flex-direction: column;
+            animation: roll 10s cubic-bezier(0.645, 0.045, 0.355, 1) infinite;
+        }
+
+        .roller-word {
+            height: 1.2em;
+            line-height: 1.2em;
+            white-space: nowrap;
+        }
+
+        @keyframes roll {
+            0%, 20% { transform: translateY(0); }
+            25%, 45% { transform: translateY(-1.2em); }
+            50%, 70% { transform: translateY(-2.4em); }
+            75%, 95% { transform: translateY(-3.6em); }
+            100% { transform: translateY(0); }
+        }
+
+        .hero-desc {
+            font-size: 1.15rem;
+            color: var(--color-gray-600);
+            max-width: 750px;
+            margin: 0 auto 2.5rem;
+            line-height: 1.6;
+        }
+
+        .hero-desc strong {
+            color: var(--color-navy-900);
+            font-weight: 700;
+        }
+
+        .email-capture-form {
+            display: flex;
+            max-width: 520px;
+            margin: 0 auto 4rem;
+            background: var(--color-white);
+            border: 1px solid var(--color-gray-300);
+            padding: 0.4rem;
+            border-radius: 12px;
+            box-shadow: var(--shadow-card);
+            transition: border-color 0.2s, box-shadow 0.2s;
+        }
+
+        .email-capture-form:focus-within {
+            border-color: var(--color-brand-600);
+            box-shadow: 0 0 0 3px rgba(0, 102, 255, 0.15), var(--shadow-card);
+        }
+
+        .email-input {
+            flex-grow: 1;
+            border: none;
+            padding: 0.5rem 1rem;
+            font-size: 0.95rem;
+            font-family: var(--font-sans);
+            outline: none;
+            color: var(--color-navy-900);
+            border-radius: 8px;
+        }
+
+        .email-input::placeholder {
+            color: var(--color-gray-300);
+        }
+
+        /* CSS Interactive Mockup Dashboard */
+        .mockup-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            border: 1px solid var(--color-brand-100);
+            border-radius: 16px;
+            box-shadow: 0 20px 50px -15px rgba(0, 102, 255, 0.08);
+            background-color: var(--color-white);
+            overflow: hidden;
+            position: relative;
+        }
+
+        .mockup-header {
+            background-color: #f1f5f9;
+            border-bottom: 1px solid #e2e8f0;
+            padding: 0.75rem 1.25rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .mockup-dots {
+            display: flex;
+            gap: 0.35rem;
+        }
+
+        .mockup-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background-color: #cbd5e1;
+        }
+
+        .mockup-dot.red { background-color: #ef4444; }
+        .mockup-dot.yellow { background-color: #f59e0b; }
+        .mockup-dot.green { background-color: #10b981; }
+
+        .mockup-browser-bar {
+            background-color: var(--color-white);
+            border-radius: 6px;
+            padding: 0.25rem 3rem;
+            font-size: 0.75rem;
+            color: var(--color-gray-600);
+            width: 320px;
+            text-align: center;
+            border: 1px solid #e2e8f0;
+        }
+
+        .mockup-body {
+            display: grid;
+            grid-template-columns: 200px 1fr;
+            min-height: 480px;
+            text-align: left;
+        }
+
+        .mockup-sidebar {
+            background-color: #0b1329;
+            color: var(--color-white);
+            padding: 1.5rem 1rem;
+            border-right: 1px solid rgba(255,255,255,0.06);
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .mockup-logo-container {
+            font-weight: 800;
+            font-size: 1rem;
+            color: var(--color-white);
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .mockup-logo-icon {
+            width: 24px;
+            height: 24px;
+            background-color: var(--color-brand-600);
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--color-white);
+            font-weight: 900;
+            font-size: 0.8rem;
+        }
+
+        .mockup-side-item {
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: #94a3b8;
+            padding: 0.5rem 0.75rem;
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .mockup-side-item.active {
+            background-color: #152243;
+            color: var(--color-white);
+            border-left: 3px solid var(--color-brand-600);
+        }
+
+        .mockup-main {
+            background-color: var(--color-brand-light);
+            padding: 2rem;
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .mockup-title {
+            font-size: 1.15rem;
+            font-weight: 800;
+            color: var(--color-navy-900);
+            margin-bottom: 0.25rem;
+        }
+
+        .mockup-subtitle {
+            font-size: 0.75rem;
+            color: var(--color-gray-600);
+        }
+
+        .mockup-row {
+            background-color: var(--color-white);
+            border: 1px solid #e2e8f0;
+            border-radius: 10px;
+            padding: 1.25rem;
+            display: grid;
+            grid-template-columns: 1fr 120px 80px;
+            gap: 1rem;
+            align-items: center;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.01);
+        }
+
+        .mockup-req-title {
+            font-size: 0.82rem;
+            font-weight: 700;
+            color: var(--color-navy-900);
+        }
+
+        .mockup-req-desc {
+            font-size: 0.75rem;
+            color: var(--color-gray-600);
+            margin-top: 0.4rem;
+            line-height: 1.5;
+        }
+
+        .mockup-compliance {
+            font-size: 0.72rem;
+            font-weight: 700;
+            padding: 0.3rem 0.6rem;
+            border-radius: 20px;
+            text-align: center;
+            width: fit-content;
+        }
+
+        .mockup-compliance.yes {
+            background-color: #eff6ff;
+            color: var(--color-brand-600);
+            border: 1px solid rgba(0, 102, 255, 0.2);
+        }
+
+        .mockup-trust {
+            width: 2.2rem;
+            height: 2.2rem;
+            border-radius: 50%;
+            border: 2px solid var(--color-brand-600);
+            color: var(--color-brand-700);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.78rem;
+            font-weight: 800;
+        }
+
+        /* GovCon Compliance & Workflow Light Sections Group */
+        .dark-showcase-section {
+            background-color: var(--color-white);
+            color: var(--color-navy-900);
+            padding: 8rem 0;
+            border-top: 1px solid var(--color-gray-300);
+            border-bottom: 1px solid var(--color-gray-300);
+        }
+
+        .showcase-grid {
+            display: grid;
+            grid-template-columns: 1fr 1.1fr;
+            gap: 5rem;
+            align-items: center;
+            margin-bottom: 7rem;
+        }
+
+        .showcase-grid.reverse {
+            grid-template-columns: 1.1fr 1fr;
+        }
+
+        .showcase-header-tag {
+            color: var(--color-brand-600);
+            font-size: 0.72rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            margin-bottom: 1rem;
+            display: block;
+        }
+
+        .showcase-title {
+            font-size: 2.5rem;
+            font-weight: 800;
+            letter-spacing: -0.04em;
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+            color: var(--color-navy-900);
+        }
+
+        .showcase-title span {
+            background: linear-gradient(135deg, var(--color-brand-600) 0%, var(--color-accent-500) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .showcase-desc {
+            font-size: 1rem;
+            color: var(--color-gray-600);
+            margin-bottom: 2rem;
+            line-height: 1.6;
+        }
+
+        .showcase-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 1.25rem;
+        }
+
+        .showcase-list-item {
+            display: flex;
+            gap: 0.75rem;
+            align-items: flex-start;
+        }
+
+        .showcase-list-item svg {
+            color: var(--color-brand-600);
+            flex-shrink: 0;
+            margin-top: 0.25rem;
+        }
+
+        .showcase-list-text strong {
+            color: var(--color-navy-900);
+            display: block;
+            font-size: 0.92rem;
+            margin-bottom: 0.15rem;
+        }
+
+        .showcase-list-text span {
+            color: var(--color-gray-600);
+            font-size: 0.85rem;
+            line-height: 1.5;
+        }
+
+        /* Mockup Light Cards */
+        .dark-card-mockup {
+            background-color: var(--color-white);
+            border: 1px solid var(--color-gray-300);
+            border-radius: 16px;
+            padding: 2.5rem 2rem;
+            box-shadow: var(--shadow-card);
+        }
+
+        .mockup-status-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid var(--color-gray-300);
+            padding-bottom: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .mockup-status-label {
+            font-size: 0.75rem;
+            font-weight: 800;
+            letter-spacing: 0.08em;
+            color: var(--color-gray-600);
+        }
+
+        .mockup-status-badge {
+            background-color: rgba(16, 185, 129, 0.1);
+            color: #10b981;
+            border: 1px solid rgba(16, 185, 129, 0.2);
+            font-size: 0.7rem;
+            font-weight: 800;
+            padding: 0.25rem 0.65rem;
+            border-radius: 30px;
+        }
+
+        .mockup-data-list {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .mockup-data-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.82rem;
+            border-bottom: 1px solid var(--color-gray-300);
+            padding-bottom: 0.75rem;
+        }
+
+        .mockup-data-row:last-child {
+            border-bottom: none;
+        }
+
+        .mockup-data-name {
+            color: var(--color-gray-600);
+        }
+
+        .mockup-data-val {
+            font-weight: 700;
+            color: var(--color-navy-900);
+        }
+
+        .mockup-data-val.alert {
+            color: #f59e0b;
+        }
+
+        .mockup-progress-container {
+            margin-top: 1.5rem;
+        }
+
+        .mockup-progress-header {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.75rem;
+            color: var(--color-gray-600);
+            margin-bottom: 0.5rem;
+        }
+
+        .mockup-progress-bar-bg {
+            width: 100%;
+            height: 6px;
+            background-color: var(--color-brand-light);
+            border-radius: 3px;
+            overflow: hidden;
+        }
+
+        .mockup-progress-bar-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--color-brand-600), var(--color-accent-500));
+            width: 90%;
+            border-radius: 3px;
+        }
+
+        /* 3 Steps List style */
+        .steps-list {
+            display: flex;
+            flex-direction: column;
+            gap: 1.75rem;
+        }
+
+        .step-item {
+            display: flex;
+            gap: 1.25rem;
+            align-items: flex-start;
+        }
+
+        .step-number {
+            width: 2.2rem;
+            height: 2.2rem;
+            border-radius: 50%;
+            background-color: var(--color-brand-light);
+            color: var(--color-brand-600);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 800;
+            font-size: 0.95rem;
+            flex-shrink: 0;
+            border: 1px solid var(--color-brand-200);
+        }
+
+        .step-content strong {
+            display: block;
+            color: var(--color-navy-900);
+            font-size: 0.95rem;
+            margin-bottom: 0.25rem;
+        }
+
+        .step-content p {
+            color: var(--color-gray-600);
+            font-size: 0.85rem;
+            line-height: 1.5;
+        }
+
+        /* Wide RAG References Mockup */
+        .wide-mockup-wrapper {
+            margin-top: 5rem;
+            border-top: 1px solid var(--color-gray-300);
+            padding-top: 5rem;
+        }
+
+        .wide-mockup-card {
+            background-color: var(--color-white);
+            border: 1px solid var(--color-gray-300);
+            border-radius: 16px;
+            padding: 2.5rem;
+            box-shadow: var(--shadow-card);
+            display: grid;
+            grid-template-columns: 1.1fr 1fr;
+            gap: 3rem;
+            text-align: left;
+        }
+
+        .wide-mockup-section-title {
+            font-size: 0.72rem;
+            font-weight: 800;
+            letter-spacing: 0.1em;
+            color: var(--color-gray-600);
+            text-transform: uppercase;
+            margin-bottom: 1.25rem;
+        }
+
+        .wide-draft-box {
+            background-color: var(--color-brand-light);
+            border: 1px solid var(--color-brand-100);
+            border-radius: 10px;
+            padding: 1.5rem;
+        }
+
+        .wide-draft-header {
+            display: flex;
+            gap: 0.35rem;
+            margin-bottom: 1.25rem;
+        }
+
+        .wide-draft-title {
+            font-size: 0.88rem;
+            font-weight: 700;
+            color: var(--color-navy-900);
+            margin-bottom: 0.5rem;
+        }
+
+        .wide-draft-text {
+            font-size: 0.8rem;
+            color: var(--color-gray-600);
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+        }
+
+        .wide-confidence-badge {
+            background-color: rgba(16, 185, 129, 0.1);
+            color: #10b981;
+            padding: 0.4rem 0.85rem;
+            font-size: 0.75rem;
+            font-weight: 700;
+            border-radius: 6px;
+            width: fit-content;
+        }
+
+        .wide-ref-item {
+            margin-bottom: 1.5rem;
+            padding-left: 1rem;
+        }
+
+        .wide-ref-item.blue {
+            border-left: 3px solid var(--color-brand-600);
+        }
+
+        .wide-ref-item.purple {
+            border-left: 3px solid #8b5cf6;
+        }
+
+        .wide-ref-title {
+            font-size: 0.82rem;
+            font-weight: 700;
+            color: var(--color-navy-900);
+            margin-bottom: 0.25rem;
+        }
+
+        .wide-ref-quote {
+            font-size: 0.78rem;
+            color: var(--color-gray-600);
+            line-height: 1.5;
+            font-style: italic;
+        }
+
+        .wide-ref-warning {
+            background-color: rgba(239, 68, 68, 0.08);
+            border: 1px solid rgba(239, 68, 68, 0.2);
+            color: #ef4444;
+            padding: 0.75rem 1rem;
+            border-radius: 8px;
+            font-size: 0.78rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+
+        /* Metrics Grid Strip */
+        .metrics-strip {
+            background-color: var(--color-white);
+            border-top: 1px solid var(--color-gray-300);
+            border-bottom: 1px solid var(--color-gray-300);
+            padding: 4rem 0;
+            text-align: center;
+        }
+
+        .metrics-strip-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr 1fr;
+            gap: 2rem;
+        }
+
+        .metric-strip-num {
+            font-size: 3.5rem;
+            font-weight: 900;
+            color: var(--color-brand-600);
+            letter-spacing: -0.05em;
+            line-height: 1;
+            margin-bottom: 0.5rem;
+        }
+
+        .metric-strip-label {
+            font-size: 0.72rem;
+            font-weight: 800;
+            color: var(--color-gray-600);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+
+        /* Team Focus Section */
+        .team-focus-section {
+            background-color: var(--color-white);
+            color: var(--color-navy-900);
+            padding: 7rem 0;
+            text-align: center;
+        }
+
+        .team-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 2rem;
+            margin-top: 4rem;
+            text-align: left;
+        }
+
+        .team-card {
+            background-color: var(--color-white);
+            border: 1px solid var(--color-gray-300);
+            border-radius: 16px;
+            padding: 2.5rem 2rem;
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            box-shadow: var(--shadow-card);
+        }
+
+        .team-card:hover {
+            transform: translateY(-6px);
+            border-color: rgba(0, 102, 255, 0.25);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .team-card-icon {
+            width: 2.5rem;
+            height: 2.5rem;
+            border-radius: 10px;
+            background-color: var(--color-brand-light);
+            color: var(--color-brand-600);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .team-card-title {
+            font-size: 1.1rem;
+            font-weight: 800;
+            color: var(--color-navy-900);
+            margin-bottom: 0.75rem;
+        }
+
+        .team-card-desc {
+            font-size: 0.85rem;
+            color: var(--color-gray-600);
+            line-height: 1.6;
+        }
+
+        /* Product features grid section */
+        .features-section {
+            padding: 7rem 0;
+            background-color: var(--color-white);
+            border-top: 1px solid var(--color-brand-100);
+        }
+
+        .section-header {
+            max-width: 750px;
+            margin: 0 auto 4rem;
+            text-align: center;
+        }
+
+        .section-title {
+            font-size: 2.25rem;
+            font-weight: 800;
+            letter-spacing: -0.03em;
+            color: var(--color-navy-900);
+            margin-bottom: 1rem;
+        }
+
+        .section-desc {
+            font-size: 1rem;
+            color: var(--color-gray-600);
+        }
+
+        .features-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 2rem;
+            background-color: var(--color-white);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: var(--shadow-card);
+            border: 1px solid var(--color-gray-300);
+        }
+
+        .features-table th, .features-table td {
+            padding: 1.25rem 1.5rem;
+            text-align: left;
+            border-bottom: 1px solid var(--color-gray-300);
+        }
+
+        .features-table th {
+            background-color: var(--color-brand-light);
+            font-weight: 800;
+            font-size: 0.85rem;
+            color: var(--color-brand-700);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .features-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        .features-table tr:hover {
+            background-color: #fafbfc;
+        }
+
+        .feature-cell-title {
+            font-weight: 700;
+            color: var(--color-navy-900);
+            font-size: 0.92rem;
+        }
+
+        .feature-cell-desc {
+            color: var(--color-gray-600);
+            font-size: 0.85rem;
+        }
+
+        .feature-tag-badge {
+            font-size: 0.72rem;
+            font-weight: 700;
+            padding: 0.25rem 0.60rem;
+            border-radius: 6px;
+            display: inline-block;
+            background-color: var(--color-brand-light);
+            color: var(--color-brand-700);
+        }
+
+        /* Demo Schedule Section */
+        .demo-section {
+            padding: 7rem 0;
+            background-color: var(--color-white);
+            border-top: 1px solid var(--color-brand-100);
+            border-bottom: 1px solid var(--color-brand-100);
+        }
+
+        .demo-grid {
+            display: grid;
+            grid-template-columns: 1.1fr 1fr;
+            gap: 5rem;
+            align-items: center;
+        }
+
+        .demo-left-title {
+            font-size: 2.5rem;
+            font-weight: 900;
+            color: var(--color-navy-900);
+            letter-spacing: -0.04em;
+            line-height: 1.15;
+            margin-bottom: 1.5rem;
+        }
+
+        .demo-left-desc {
+            font-size: 1rem;
+            color: var(--color-gray-600);
+            margin-bottom: 3.5rem;
+            line-height: 1.6;
+        }
+
+        .brand-logos-title {
+            font-size: 0.68rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: var(--color-gray-600);
+            margin-bottom: 1.5rem;
+        }
+
+        .logo-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 2rem 1.5rem;
+        }
+
+        .logo-item {
+            display: flex;
+            flex-direction: column;
+            gap: 0.4rem;
+        }
+
+        .logo-name {
+            font-size: 0.95rem;
+            font-weight: 800;
+            color: var(--color-navy-900);
+            display: flex;
+            align-items: center;
+            gap: 0.3rem;
+        }
+
+        .logo-link {
+            font-size: 0.72rem;
+            font-weight: 700;
+            color: var(--color-brand-600);
+        }
+
+        .logo-link:hover {
+            color: var(--color-brand-700);
+        }
+
+        /* Demo Form */
+        .demo-form {
+            background-color: var(--color-white);
+            border: 1px solid var(--color-brand-100);
+            border-radius: 16px;
+            padding: 2.5rem;
+            box-shadow: var(--shadow-card);
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.25rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .form-full {
+            grid-column: span 2;
+            display: flex;
+            flex-direction: column;
+            gap: 0.4rem;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.4rem;
+        }
+
+        .form-group label {
+            font-size: 0.78rem;
+            font-weight: 700;
+            color: var(--color-navy-900);
+        }
+
+        .form-group label span {
+            color: #ef4444;
+        }
+
+        .form-group input, .form-group select {
+            padding: 0.65rem 0.75rem;
+            border: 1px solid var(--color-gray-300);
+            border-radius: 8px;
+            font-family: var(--font-sans);
+            font-size: 0.88rem;
+            color: var(--color-navy-900);
+            outline: none;
+            background-color: var(--color-white);
+            transition: border-color 0.2s, box-shadow 0.2s;
+        }
+
+        .form-group input:focus, .form-group select:focus {
+            border-color: var(--color-brand-600);
+            box-shadow: 0 0 0 3px rgba(0, 102, 255, 0.12);
+        }
+
+        /* Pricing Section */
+        .pricing-section {
+            padding: 7rem 0;
+            background-color: var(--color-bg);
+            text-align: center;
+        }
+
+        .pricing-header {
+            margin-bottom: 4rem;
+        }
+
+        .pricing-title {
+            font-size: 2.5rem;
+            font-weight: 900;
+            color: var(--color-navy-900);
+            letter-spacing: -0.04em;
+            margin-bottom: 0.5rem;
+        }
+
+        .pricing-subtitle {
+            font-size: 1rem;
+            color: var(--color-gray-600);
+        }
+
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 2rem;
+            max-width: 1050px;
+            margin: 0 auto 4rem;
+            text-align: left;
+        }
+
+        .pricing-card {
+            background-color: var(--color-white);
+            border: 1px solid var(--color-gray-300);
+            border-radius: 16px;
+            padding: 2.5rem 2rem;
+            box-shadow: var(--shadow-card);
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            min-height: 520px;
+            position: relative;
+        }
+
+        .pricing-card:hover {
+            transform: translateY(-6px);
+            box-shadow: var(--shadow-hover);
+            border-color: rgba(0, 102, 255, 0.25);
+        }
+
+        .pricing-card.featured {
+            border-color: var(--color-brand-600);
+            box-shadow: 0 10px 25px -5px rgba(0, 102, 255, 0.1);
+        }
+
+        .pricing-card.featured::before {
+            content: 'RECOMMENDED';
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: linear-gradient(135deg, var(--color-navy-900) 0%, var(--color-brand-700) 100%);
+            color: var(--color-white);
+            font-size: 0.65rem;
+            font-weight: 800;
+            padding: 0.25rem 0.65rem;
+            border-radius: 30px;
+            letter-spacing: 0.05em;
+            border: 1px solid var(--color-brand-600);
+        }
+
+        .price-num {
+            font-size: 2.5rem;
+            font-weight: 900;
+            color: var(--color-navy-900);
+            letter-spacing: -0.04em;
+        }
+
+        .price-period {
+            font-size: 0.8rem;
+            color: var(--color-gray-600);
+            margin-bottom: 1.5rem;
+            font-weight: 600;
+        }
+
+        .price-features {
+            list-style: none;
+            padding-top: 1.5rem;
+            border-top: 1px solid var(--color-brand-100);
+            margin-bottom: 2rem;
+        }
+
+        .price-features li {
+            font-size: 0.84rem;
+            color: var(--color-gray-900);
+            margin-bottom: 0.75rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-weight: 500;
+        }
+
+        .price-features li svg {
+            color: var(--color-brand-600);
+            flex-shrink: 0;
+        }
+
+        .pricing-card-form {
+            display: flex;
+            gap: 0.35rem;
+            margin-bottom: 1rem;
+        }
+
+        .pricing-card-form input {
+            flex-grow: 1;
+            padding: 0.5rem 0.75rem;
+            border: 1px solid var(--color-gray-300);
+            border-radius: 8px;
+            font-size: 0.8rem;
+            outline: none;
+        }
+
+        .pricing-card-form input:focus {
+            border-color: var(--color-brand-600);
+        }
+
+        .pricing-footer-labels {
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            flex-wrap: wrap;
+        }
+
+        .pricing-footer-label {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.84rem;
+            color: var(--color-gray-600);
+            font-weight: 600;
+        }
+
+        .pricing-footer-label svg {
+            color: var(--color-brand-600);
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--color-navy-950);
+            color: #94a3b8;
+            padding: 5rem 0 3rem;
+            border-top: 1px solid rgba(255,255,255,0.06);
+            font-size: 0.875rem;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 1.5fr 1fr 1fr 1fr;
+            gap: 4rem;
+            margin-bottom: 4rem;
+        }
+
+        .footer-logo {
+            color: var(--color-white);
+            font-weight: 900;
+            font-size: 1.25rem;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .footer-desc {
+            font-size: 0.82rem;
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+        }
+
+        .footer-title {
+            color: var(--color-white);
+            font-weight: 700;
+            margin-bottom: 1.25rem;
+        }
+
+        .footer-links {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+
+        .footer-link a:hover {
+            color: var(--color-brand-200);
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255,255,255,0.06);
+            padding-top: 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.78rem;
+        }
+
+        /* Responsiveness */
+        @media (max-width: 992px) {
+            .nav-menu, .nav-actions { display: none; }
+            .demo-grid { grid-template-columns: 1fr; gap: 3rem; }
+            .pricing-grid { grid-template-columns: 1fr; max-width: 450px; }
+            .footer-grid { grid-template-columns: 1fr 1fr; gap: 2rem; }
+            .hero-title { font-size: 2.5rem; }
+            .mockup-body { grid-template-columns: 1fr; }
+            .mockup-sidebar { display: none; }
+            .showcase-grid, .showcase-grid.reverse { grid-template-columns: 1fr; gap: 3rem; }
+            .metrics-strip-grid { grid-template-columns: 1fr 1fr; gap: 2rem; }
+            .team-grid { grid-template-columns: 1fr; }
+            .wide-mockup-card { grid-template-columns: 1fr; gap: 2.5rem; }
+        }
+        /* Legacy vs FlashRFP Compare Section */
+        .compare-section {
+            padding: 8rem 0;
+            background-color: #ffffff;
+            text-align: center;
+            border-bottom: 1px solid var(--color-gray-300);
+            position: relative;
+        }
+        .compare-header {
+            max-width: 750px;
+            margin: 0 auto 4rem;
+        }
+        
+        .compare-layout-grid {
+            display: grid;
+            grid-template-columns: 1fr 1.2fr 1fr;
+            gap: 2.5rem;
+            align-items: center;
+        }
+
+        .compare-card-column {
+            display: flex;
+            flex-direction: column;
+            gap: 1.75rem;
+            text-align: left;
+        }
+
+        .compare-card {
+            background-color: var(--color-white);
+            border: 1px solid var(--color-gray-300);
+            border-radius: 12px;
+            padding: 1.5rem;
+            box-shadow: var(--shadow-card);
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            display: flex;
+            gap: 1rem;
+            align-items: flex-start;
+        }
+
+        .compare-card-icon {
+            width: 2rem;
+            height: 2rem;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .compare-card-text {
+            font-size: 0.86rem;
+            line-height: 1.5;
+            color: var(--color-gray-900);
+            font-weight: 500;
+        }
+
+        /* Continuous Automatic Sync Loop Keyframes */
+        @keyframes leftCardsHighlight {
+            0%, 45% {
+                opacity: 1;
+                border-color: rgba(239, 68, 68, 0.35);
+                box-shadow: 0 8px 30px rgba(239, 68, 68, 0.08);
+                transform: scale(1.02);
+            }
+            50%, 100% {
+                opacity: 0.4;
+                border-color: var(--color-gray-300);
+                box-shadow: var(--shadow-card);
+                transform: scale(1);
+            }
+        }
+
+        @keyframes rightCardsHighlight {
+            0%, 45% {
+                opacity: 0.4;
+                border-color: var(--color-gray-300);
+                box-shadow: var(--shadow-card);
+                transform: scale(1);
+            }
+            50%, 95% {
+                opacity: 1;
+                border-color: rgba(16, 185, 129, 0.35);
+                box-shadow: 0 8px 30px rgba(16, 185, 129, 0.08);
+                transform: scale(1.02);
+            }
+            100% {
+                opacity: 0.4;
+                border-color: var(--color-gray-300);
+                box-shadow: var(--shadow-card);
+                transform: scale(1);
+            }
+        }
+
+        .compare-card.before-card {
+            animation: leftCardsHighlight 10s infinite cubic-bezier(0.16, 1, 0.3, 1);
+            border-color: rgba(239, 68, 68, 0.15);
+        }
+        .compare-card.before-card .compare-card-icon {
+            background-color: rgba(239, 68, 68, 0.08);
+            color: #ef4444;
+        }
+
+        .compare-card.after-card {
+            animation: rightCardsHighlight 10s infinite cubic-bezier(0.16, 1, 0.3, 1);
+            border-color: rgba(16, 185, 129, 0.15);
+        }
+        .compare-card.after-card .compare-card-icon {
+            background-color: rgba(16, 185, 129, 0.08);
+            color: #10b981;
+        }
+
+        /* Orbital animation diagram */
+        .compare-diagram-container {
+            position: relative;
+            width: 100%;
+            height: 400px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .compare-orbital-ring {
+            position: absolute;
+            width: 270px;
+            height: 270px;
+            border: 1px dashed var(--color-gray-300);
+            border-radius: 50%;
+            z-index: 1;
+            transition: border-color 0.4s;
+            animation: rotateOrbit 30s linear infinite, ringHighlight 10s infinite ease-in-out;
+        }
+
+        @keyframes rotateOrbit {
+            100% { transform: rotate(360deg); }
+        }
+
+        @keyframes ringHighlight {
+            0%, 45% { border-color: rgba(239, 68, 68, 0.15); }
+            50%, 100% { border-color: rgba(0, 102, 255, 0.18); }
+        }
+
+        .compare-avatar-center {
+            position: relative;
+            z-index: 3;
+            width: 5.5rem;
+            height: 5.5rem;
+            border-radius: 50%;
+            background-color: var(--color-white);
+            border: 3px solid var(--color-gray-300);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: var(--shadow-card);
+            transition: all 0.4s;
+            overflow: hidden;
+            animation: centerCoreHighlight 10s infinite ease-in-out;
+        }
+
+        @keyframes centerCoreHighlight {
+            0%, 45% {
+                border-color: #ef4444;
+                box-shadow: 0 0 25px rgba(239, 68, 68, 0.25);
+            }
+            50%, 95% {
+                border-color: var(--color-brand-600);
+                box-shadow: 0 0 30px rgba(0, 102, 255, 0.3);
+            }
+            100% {
+                border-color: #ef4444;
+                box-shadow: 0 0 25px rgba(239, 68, 68, 0.25);
+            }
+        }
+
+        /* Floating node files */
+        .compare-file-node {
+            position: absolute;
+            width: 2.2rem;
+            height: 2.2rem;
+            border-radius: 8px;
+            background-color: var(--color-white);
+            border: 1px solid var(--color-gray-300);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: var(--shadow-card);
+            z-index: 2;
+            transition: all 0.4s;
+            animation: wobbleNode 4s infinite ease-in-out;
+        }
+
+        .node-pdf { top: 15%; right: 15%; }
+        .node-xls { bottom: 15%; left: 15%; }
+        .node-doc { top: 40%; left: 10%; }
+        .node-db { bottom: 40%; right: 10%; }
+
+        @keyframes wobbleNode {
+            0%, 100% { transform: translate(0, 0); }
+            50% { transform: translate(4px, -6px); }
+        }
+
+        /* Speech bubbles */
+        .compare-bubble {
+            position: absolute;
+            padding: 0.55rem 0.95rem;
+            background-color: var(--color-white);
+            border-radius: 8px;
+            font-size: 0.72rem;
+            font-weight: 700;
+            box-shadow: var(--shadow-card);
+            z-index: 3;
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            white-space: nowrap;
+            display: flex;
+            align-items: center;
+            gap: 0.45rem;
+        }
+
+        .bubble-deadline {
+            top: 5%;
+            left: 50%;
+            transform: translateX(-50%);
+            border: 1px solid #ef4444;
+            color: #ef4444;
+            animation: stressedBubbles 10s infinite cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .bubble-question {
+            top: 35%;
+            right: 0%;
+            border: 1px solid var(--color-gray-300);
+            color: var(--color-gray-600);
+            animation: stressedBubbles 10s infinite cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .bubble-review {
+            bottom: 5%;
+            left: 10%;
+            border: 1px solid var(--color-gray-300);
+            color: var(--color-gray-600);
+            animation: stressedBubbles 10s infinite cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        /* Success bubbles for mode-after */
+        .compare-bubble.after-bubble {
+            border-color: var(--color-brand-600);
+            color: var(--color-brand-600);
+            animation: relaxedBubbles 10s infinite cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .bubble-success-1 {
+            top: 35%;
+            left: -5%;
+        }
+
+        .bubble-success-2 {
+            bottom: 8%;
+            right: 5%;
+        }
+
+        @keyframes stressedBubbles {
+            0%, 45% {
+                opacity: 1;
+                transform: translate(-50%, 0) scale(1);
+            }
+            50%, 100% {
+                opacity: 0;
+                transform: translate(-50%, 8px) scale(0.95);
+                pointer-events: none;
+            }
+        }
+        
+        /* Specialized layout offsets for non-centered bubbles */
+        .bubble-question, .bubble-review {
+            transform: none;
+        }
+        
+        @keyframes stressedBubblesNonCentered {
+            0%, 45% {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+            50%, 100% {
+                opacity: 0;
+                transform: translateY(8px) scale(0.95);
+                pointer-events: none;
+            }
+        }
+        
+        .bubble-question { animation-name: stressedBubblesNonCentered; }
+        .bubble-review { animation-name: stressedBubblesNonCentered; }
+
+        @keyframes relaxedBubbles {
+            0%, 45% {
+                opacity: 0;
+                transform: translateY(8px) scale(0.95);
+                pointer-events: none;
+            }
+            50%, 95% {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+            100% {
+                opacity: 0;
+                transform: translateY(8px) scale(0.95);
+                pointer-events: none;
+            }
+        }
+
+        @media (max-width: 992px) {
+            .compare-layout-grid { grid-template-columns: 1fr; }
+            .compare-diagram-container { display: none; }
+            .compare-card { animation: none !important; opacity: 1 !important; filter: none !important; transform: none !important; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header Navigation -->
+    <header>
+        <div class="container nav-wrapper">
+            <a href="#" class="logo">
+                <svg class="logo-icon-svg" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <rect width="32" height="32" rx="8" fill="#0f172a" />
+                    <path d="M9 8H23V12H13V15H21V19H13V24H9V8Z" fill="url(#logo-gradient)" />
+                    <path d="M23 8L15 24H18L26 8H23Z" fill="#0066ff" opacity="0.8" />
+                    <defs>
+                        <linearGradient id="logo-gradient" x1="9" y1="8" x2="23" y2="24" gradientUnits="userSpaceOnUse">
+                            <stop offset="0%" stop-color="#0066ff" />
+                            <stop offset="100%" stop-color="#0052cc" />
+                        </linearGradient>
+                    </defs>
+                </svg>
+                FlashRFP.ai
+            </a>
+            
+            <ul class="nav-menu">
+                <li class="nav-item">
+                    <a href="#" class="nav-link">Product <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></a>
+                    <div class="mega-menu">
+                        <div class="mega-left">
+                            <div>
+                                <div class="mega-left-title">Platform</div>
+                                <div class="mega-left-desc">The AI-first RFP platform for drafting, collaborating, and winning, end to end.</div>
+                            </div>
+                            <a href="#" class="mega-left-action">View overview <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+                        </div>
+                        <div class="mega-right">
+                            <a href="#" class="mega-item">
+                                <div class="mega-icon">
+                                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
+                                </div>
+                                <div class="mega-info">
+                                    <div class="mega-title">Response Generation <svg class="arrow-icon" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
+                                    <div class="mega-desc">AI models, citations, trust layer</div>
+                                </div>
+                            </a>
+                            <a href="#" class="mega-item">
+                                <div class="mega-icon">
+                                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5" rx="9" ry="3"></ellipse><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"></path><path d="M3 12c0 1.66 4 3 9 3s9-1.34 9-3"></path></svg>
+                                </div>
+                                <div class="mega-info">
+                                    <div class="mega-title">Content Management <svg class="arrow-icon" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
+                                    <div class="mega-desc">Integrations, ownership, schedules</div>
+                                </div>
+                            </a>
+                            <a href="#" class="mega-item">
+                                <div class="mega-icon">
+                                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+                                </div>
+                                <div class="mega-info">
+                                    <div class="mega-title">Collaboration <svg class="arrow-icon" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
+                                    <div class="mega-desc">Slack & Teams, project management</div>
+                                </div>
+                            </a>
+                            <a href="#" class="mega-item">
+                                <div class="mega-icon">
+                                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="6" y1="12" x2="18" y2="12"></line><line x1="12" y1="6" x2="12" y2="18"></line><circle cx="6" cy="12" r="3"></circle><circle cx="18" cy="12" r="3"></circle></svg>
+                                </div>
+                                <div class="mega-info">
+                                    <div class="mega-title">Integrations <svg class="arrow-icon" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
+                                    <div class="mega-desc">Connect the tools your team already uses</div>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link">Solutions <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></a>
+                    <div class="mega-menu">
+                        <div class="mega-left">
+                            <div>
+                                <div class="mega-left-title">Solutions</div>
+                                <div class="mega-left-desc">See how FlashRFP.ai handles RFPs, DDQs, and security questionnaires with AI.</div>
+                            </div>
+                            <a href="#demo-form" class="mega-left-action">Schedule demo <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+                        </div>
+                        <div class="mega-right">
+                            <a href="#" class="mega-item">
+                                <div class="mega-icon">
+                                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline></svg>
+                                </div>
+                                <div class="mega-info">
+                                    <div class="mega-title">RFP Software <svg class="arrow-icon" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
+                                    <div class="mega-desc">Automate RFP responses with AI</div>
+                                </div>
+                            </a>
+                            <a href="#" class="mega-item">
+                                <div class="mega-icon">
+                                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+                                </div>
+                                <div class="mega-info">
+                                    <div class="mega-title">DDQ Software <svg class="arrow-icon" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
+                                    <div class="mega-desc">Due diligence questionnaires for funds</div>
+                                </div>
+                            </a>
+                            <a href="#" class="mega-item">
+                                <div class="mega-icon">
+                                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
+                                </div>
+                                <div class="mega-info">
+                                    <div class="mega-title">Security Questionnaires <svg class="arrow-icon" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
+                                    <div class="mega-desc">Automate security reviews and portals</div>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </li>
+                <li class="nav-item"><a href="#" class="nav-link">Customer Stories</a></li>
+                <li class="nav-item"><a href="#" class="nav-link">Blog</a></li>
+                <li class="nav-item"><a href="#pricing" class="nav-link">Pricing</a></li>
+            </ul>
+
+            <div class="nav-actions">
+                <a href="http://localhost:8501" target="_blank" class="login-link">Log in</a>
+                <a href="#demo-form" class="btn btn-primary">Book Demo</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <!-- Shifting ambient glow elements -->
+        <div class="hero-glow-1"></div>
+        <div class="hero-glow-2"></div>
+        
+        <div class="container hero-content-wrapper">
+            <span class="badge-eyebrow">⚡ Private Agentic SaaS</span>
+            <h1 class="hero-title">
+                Agentic AI Engine for Winning 
+                <span class="text-roller">
+                    <span class="roller-wrapper">
+                        <span class="roller-word">RFPs</span>
+                        <span class="roller-word">DDQs</span>
+                        <span class="roller-word">RFIs</span>
+                        <span class="roller-word">SQs</span>
+                    </span>
+                </span>
+            </h1>
+            <p class="hero-desc">
+                FlashRFP.ai is a B2B AI-powered RFP response engine. We help bid management, sales, and pre-sales teams automatically generate professional proposal responses in seconds using a private RAG pipeline built on their own historical documents.
+                <br><br>
+                <strong>"Cut proposal writing time from 8 hours to 8 minutes — with 90% less effort and zero hallucination risk."</strong>
+            </p>
+            
+            <form action="#demo-form" class="email-capture-form">
+                <input type="email" placeholder="name@company.com" class="email-input" required>
+                <button type="submit" class="btn btn-primary">Book Demo <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></button>
+            </form>
+
+            <!-- Hero Trust Badges row -->
+            <div class="hero-trust-badges">
+                <div class="hero-trust-badge">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5" rx="9" ry="3"></ellipse><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"></path></svg>
+                    Private RAG Architecture
+                </div>
+                <div class="hero-trust-badge">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
+                    SOC2 Compliance Standards
+                </div>
+                <div class="hero-trust-badge">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10zM12 8v4m0 4h.01"/></svg>
+                    Zero LLM Data Retention
+                </div>
+            </div>
+
+            <!-- CSS Interactive Mockup Dashboard -->
+            <div class="mockup-container">
+                <div class="mockup-header">
+                    <div class="mockup-dots">
+                        <div class="mockup-dot red"></div>
+                        <div class="mockup-dot yellow"></div>
+                        <div class="mockup-dot green"></div>
+                    </div>
+                    <div class="mockup-browser-bar">flashrfp.ai/engine</div>
+                    <div style="width: 40px;"></div>
+                </div>
+                <div class="mockup-body">
+                    <div class="mockup-sidebar">
+                        <div class="mockup-logo-container">
+                            <div class="mockup-logo-icon">⚡</div>
+                            FlashRFP.ai
+                        </div>
+                        <div class="mockup-side-item active">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
+                            Proposal Engine
+                        </div>
+                        <div class="mockup-side-item">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="17 8 12 3 7 8"></polyline><line x1="12" y1="3" x2="12" y2="15"></line></svg>
+                            Upload Documents
+                        </div>
+                        <div class="mockup-side-item">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5" rx="9" ry="3"></ellipse><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"></path></svg>
+                            Knowledge Base
+                        </div>
+                        <div class="mockup-side-item">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"></rect><line x1="1" y1="10" x2="23" y2="10"></line></svg>
+                            Subscription Plan
+                        </div>
+                    </div>
+                    <div class="mockup-main">
+                        <div style="text-align: left; margin-bottom: 0.5rem;">
+                            <div class="mockup-title">Draft Proposal Response</div>
+                            <div class="mockup-subtitle">FlashRFP AI retrieves historical proposal vectors and drafts professional responses.</div>
+                        </div>
+                        
+                        <div class="mockup-row">
+                            <div>
+                                <div class="mockup-req-title">Explain your security architecture in exactly 50 words.</div>
+                                <div class="mockup-req-desc">"FlashRFP.ai secures client data with regional isolation, private RAG vector index partitions, and strict field level encryption, preventing tenant data crossover."</div>
+                            </div>
+                            <div class="mockup-compliance yes">Compliant</div>
+                            <div class="mockup-trust">97%</div>
+                        </div>
+                        
+                        <div class="mockup-row">
+                            <div>
+                                <div class="mockup-req-title">How does the platform prevent model training on customer data?</div>
+                                <div class="mockup-req-desc">"Our LLM routers execute queries via zero-retention private APIs. Customer documents are stored in dedicated ChromaDB vector instances and never leaked to third party tuning."</div>
+                            </div>
+                            <div class="mockup-compliance yes">Compliant</div>
+                            <div class="mockup-trust">96%</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Metrics strip -->
+    <section class="metrics-strip">
+        <div class="container metrics-strip-grid">
+            <div>
+                <div class="metric-strip-num">80+</div>
+                <div class="metric-strip-label">Hours Saved Per RFP</div>
+            </div>
+            <div>
+                <div class="metric-strip-num">90%</div>
+                <div class="metric-strip-label">Draft Completion Rate</div>
+            </div>
+            <div>
+                <div class="metric-strip-num">100%</div>
+                <div class="metric-strip-label">GovCon Compliant</div>
+            </div>
+            <div>
+                <div class="metric-strip-num">0</div>
+                <div class="metric-strip-label">AI Hallucinations</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Legacy vs FlashRFP Compare Section -->
+    <section class="compare-section mode-before" id="comparison-block">
+        <div class="container">
+            <div class="compare-header">
+                <span class="showcase-header-tag">THE PROBLEM WITH LEGACY RFP SOFTWARE</span>
+                <h2 class="showcase-title">Your team is trapped in manual RFPs</h2>
+                <p class="showcase-desc">Or worse, legacy RFP software that slows you down.</p>
+            </div>
+
+            <div class="compare-layout-grid">
+                <!-- Left Column: Before Pain Cards -->
+                <div class="compare-card-column">
+                    <div class="compare-card before-card">
+                        <div class="compare-card-icon">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><line x1="5" y1="12" x2="19" y2="12"/></svg>
+                        </div>
+                        <div class="compare-card-text">Your generic past RFP responses are bland, incorrect and don't win.</div>
+                    </div>
+                    <div class="compare-card before-card">
+                        <div class="compare-card-icon">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><line x1="5" y1="12" x2="19" y2="12"/></svg>
+                        </div>
+                        <div class="compare-card-text">RFPs drain time; coordinating teams and versioning is a nightmare.</div>
+                    </div>
+                    <div class="compare-card before-card">
+                        <div class="compare-card-icon">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><line x1="5" y1="12" x2="19" y2="12"/></svg>
+                        </div>
+                        <div class="compare-card-text">Content lives in different systems and you can never find the right answer.</div>
+                    </div>
+                </div>
+
+                <!-- Center Column: Dynamic Morphing Orbit -->
+                <div class="compare-diagram-container">
+                    <div class="compare-orbital-ring"></div>
+                    
+                    <!-- Portrait Silhouette Avatar representing the Bid Team -->
+                    <div class="compare-avatar-center">
+                        <svg width="88" height="88" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" style="display: block; border-radius: 50%;">
+                            <!-- Circle Background Gradient -->
+                            <rect width="64" height="64" fill="url(#avatar-grad)" />
+                            <!-- Face/Neck -->
+                            <path d="M32 40C37.5228 40 42 35.5228 42 30C42 24.4772 37.5228 20 32 20C26.4772 20 22 24.4772 22 30C22 35.5228 26.4772 40 32 40Z" fill="#ffffff" opacity="0.95" />
+                            <!-- Stylized Hair -->
+                            <path d="M20 26C20 20 25 16 32 16C39 16 44 20 44 26C44 27.5 32 23 20 26Z" fill="#1e293b" />
+                            <!-- Shoulders/Body -->
+                            <path d="M12 56C12 47 20 43 32 43C44 43 52 47 52 56" stroke="#ffffff" stroke-width="4.5" stroke-linecap="round" />
+                            <defs>
+                                <linearGradient id="avatar-grad" x1="0" y1="0" x2="64" y2="64" gradientUnits="userSpaceOnUse">
+                                    <stop offset="0%" stop-color="#0066ff" />
+                                    <stop offset="100%" stop-color="#10b981" />
+                                </linearGradient>
+                            </defs>
+                        </svg>
+                    </div>
+
+                    <!-- File Nodes -->
+                    <div class="compare-file-node node-pdf" style="color: #ef4444;">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+                    </div>
+                    <div class="compare-file-node node-xls" style="color: #10b981;">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><line x1="9" y1="9" x2="15" y2="9"/><line x1="9" y1="13" x2="15" y2="13"/><line x1="9" y1="17" x2="15" y2="17"/></svg>
+                    </div>
+                    <div class="compare-file-node node-doc" style="color: var(--color-brand-600);">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+                    </div>
+                    <div class="compare-file-node node-db" style="color: #8b5cf6;">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/><path d="M3 12c0 1.66 4 3 9 3s9-1.34 9-3"/></svg>
+                    </div>
+
+                    <!-- Stressed Bubbles (Before) -->
+                    <div class="compare-bubble bubble-deadline">
+                        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0zM12 9v4m0 4h.01"/></svg>
+                        Deadline: 0 Days
+                    </div>
+                    <div class="compare-bubble bubble-question">
+                        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3m0 4h.01"/></svg>
+                        Where is the answer?
+                    </div>
+                    <div class="compare-bubble bubble-review">
+                        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                        I need a review by 5pm
+                    </div>
+
+                    <!-- Clean Bubbles (After) -->
+                    <div class="compare-bubble after-bubble bubble-success-1">
+                        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+                        90% Completed instantly
+                    </div>
+                    <div class="compare-bubble after-bubble bubble-success-2">
+                        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+                        Review complete (Ahead of Schedule)
+                    </div>
+                </div>
+
+                <!-- Right Column: After Solution Cards -->
+                <div class="compare-card-column">
+                    <div class="compare-card after-card">
+                        <div class="compare-card-icon">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
+                        </div>
+                        <div class="compare-card-text">AI finds the relevant response and generates an answer that answers the requirement.</div>
+                    </div>
+                    <div class="compare-card after-card">
+                        <div class="compare-card-icon">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
+                        </div>
+                        <div class="compare-card-text">Project-manage teams and experts in one system to save time and reduce chaos.</div>
+                    </div>
+                    <div class="compare-card after-card">
+                        <div class="compare-card-icon">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
+                        </div>
+                        <div class="compare-card-text">Automate content: AI assigns relevant categories and keeps it up to date.</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- GovCon Compliance & Workflow Light Showcase Section -->
+    <section class="dark-showcase-section">
+        <div class="container">
+            
+            <!-- 1. Workflow Block -->
+            <div class="showcase-grid reverse" style="margin-bottom: 7rem;">
+                <div>
+                    <span class="showcase-header-tag">WORKFLOW</span>
+                    <h2 class="showcase-title">From 100-page PDF to formatted Word in 3 steps.</h2>
+                    <p class="showcase-desc">Stop spending weeks reading dense government legal jargon. Let the engine do the heavy lifting.</p>
+                    
+                    <div class="steps-list">
+                        <div class="step-item">
+                            <div class="step-number">1</div>
+                            <div class="step-content">
+                                <strong>Upload History</strong>
+                                <p>Drag and drop your past winning proposals and technical docs.</p>
+                            </div>
+                        </div>
+                        <div class="step-item">
+                            <div class="step-number">2</div>
+                            <div class="step-content">
+                                <strong>Drop the RFP</strong>
+                                <p>Upload the 100-page RFP PDF and the blank Word template.</p>
+                            </div>
+                        </div>
+                        <div class="step-item">
+                            <div class="step-number">3</div>
+                            <div class="step-content">
+                                <strong>Export & Review</strong>
+                                <p>Download the 90% completed Word doc. Review the red flags, and submit.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="dark-card-mockup" style="background-color: #ffffff;">
+                    <div class="mockup-status-row">
+                        <span class="mockup-status-label" style="color: #64748b;">PROJECT STATUS</span>
+                        <span class="mockup-status-badge" style="background-color: rgba(16,185,129,0.15); color: #10b981; border-color: rgba(16,185,129,0.3);">EXTRACTION COMPLETE</span>
+                    </div>
+                    <div class="mockup-data-list">
+                        <div class="mockup-data-row">
+                            <span class="mockup-data-name">Pages Scanned</span>
+                            <span class="mockup-data-val">136</span>
+                        </div>
+                        <div class="mockup-data-row">
+                            <span class="mockup-data-name">Questions Extracted</span>
+                            <span class="mockup-data-val">42</span>
+                        </div>
+                        <div class="mockup-data-row">
+                            <span class="mockup-data-name">Answers Drafted</span>
+                            <span class="mockup-data-val">38</span>
+                        </div>
+                        <div class="mockup-data-row">
+                            <span class="mockup-data-name">Manual Reviews Flagged</span>
+                            <span class="mockup-data-val alert">4</span>
+                        </div>
+                    </div>
+                    
+                    <div class="mockup-progress-container">
+                        <div class="mockup-progress-header">
+                            <span>Overall Completion</span>
+                            <span style="font-weight: 800; color: var(--color-navy-900);">90%</span>
+                        </div>
+                        <div class="mockup-progress-bar-bg">
+                            <div class="mockup-progress-bar-fill"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 2. Wide RAG references Mockup -->
+            <div class="wide-mockup-wrapper" style="margin-top: 0; padding-top: 0; border-top: none; margin-bottom: 7rem;">
+                <div class="wide-mockup-card">
+                    <div>
+                        <div class="wide-mockup-section-title">Draft Response</div>
+                        <div class="wide-draft-box">
+                            <div class="wide-draft-header">
+                                <div class="mockup-dot red"></div>
+                                <div class="mockup-dot yellow"></div>
+                                <div class="mockup-dot green"></div>
+                            </div>
+                            <div class="wide-draft-title">1. Introduction to SLA Adherence</div>
+                            <div class="wide-draft-text">
+                                We strictly comply with the required 99.95% uptime. Our architecture guarantees N+1 redundancy across all critical paths...
+                            </div>
+                            <div class="wide-confidence-badge">Confidence Score: 92% Match</div>
+                        </div>
+                    </div>
+
+                    <div>
+                        <div class="wide-mockup-section-title">Source References</div>
+                        <div class="wide-ref-item blue">
+                            <div class="wide-ref-title">Past_Proposal_SBI.pdf (P.14)</div>
+                            <div class="wide-ref-quote">
+                                "...guarantees 99.95% uptime on a 24x7x365 basis, failing which penalty..."
+                            </div>
+                        </div>
+                        <div class="wide-ref-item purple">
+                            <div class="wide-ref-title">Tech_Specs.docx (P.8)</div>
+                            <div class="wide-ref-quote">
+                                "...N+1 redundant power supplies to ensure continuous operation..."
+                            </div>
+                        </div>
+                        
+                        <div class="wide-ref-warning">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0zM12 9v4m0 4h.01"/></svg>
+                            MANUAL REVIEW: PBG format not found.
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 3. Compliance Block -->
+            <div class="showcase-grid" style="margin-bottom: 0;">
+                <div class="dark-card-mockup" style="background-color: #ffffff;">
+                    <div class="mockup-status-row">
+                        <span class="mockup-status-label" style="color: #64748b;">TENANT CONSOLE</span>
+                        <span class="mockup-status-badge">ACTIVE & SECURE</span>
+                    </div>
+                    <div class="mockup-data-list">
+                        <div class="mockup-data-row">
+                            <span class="mockup-data-name">TENANT ID</span>
+                            <span class="mockup-data-val" style="color: #10b981; font-family: monospace;">user_892A_isolated</span>
+                        </div>
+                        <div class="mockup-data-row">
+                            <span class="mockup-data-name">DATABASE</span>
+                            <span class="mockup-data-val" style="color: var(--color-brand-600); font-family: monospace;">ChromaDB / Vector</span>
+                        </div>
+                        <div class="mockup-data-row">
+                            <span class="mockup-data-name">ENCRYPTION STATUS</span>
+                            <span class="mockup-data-val" style="color: #10b981;">AES-256 GCM</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div>
+                    <span class="showcase-header-tag">SECURITY & COMPLIANCE</span>
+                    <h2 class="showcase-title">Built for <span>GovCon Compliance</span></h2>
+                    <p class="showcase-desc">Government tender data is highly sensitive. We follow OWASP LLM security guidelines to ensure your intellectual property never leaks.</p>
+                    
+                    <ul class="showcase-list">
+                        <li class="showcase-list-item">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                            <div class="showcase-list-text">
+                                <strong>Cross-Tenant Data Isolation</strong>
+                                <span>Your vector database is strictly namespaced. User A can never retrieve User B's data.</span>
+                            </div>
+                        </li>
+                        <li class="showcase-list-item">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                            <div class="showcase-list-text">
+                                <strong>PII Data Masking</strong>
+                                <span>Sensitive personal information is automatically redacted before hitting the LLM.</span>
+                            </div>
+                        </li>
+                        <li class="showcase-list-item">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                            <div class="showcase-list-text">
+                                <strong>Audit Logging</strong>
+                                <span>Every generated response is traced back to the exact source document it was retrieved from.</span>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Team Focus Section -->
+    <section class="team-focus-section">
+        <div class="container">
+            <span class="showcase-header-tag">COLLABORATION</span>
+            <h2 class="showcase-title" style="text-align: center;">Built for the entire <span>Bid Team</span></h2>
+            <p class="showcase-desc" style="max-width: 650px; margin: 0 auto; text-align: center;">Whether you're a solo consultant or a 50-person system integrator, FlashRFP adapts to your workflow.</p>
+            
+            <div class="team-grid">
+                <!-- Card 1 -->
+                <div class="team-card">
+                    <div class="team-card-icon">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+                    </div>
+                    <div class="team-card-title">For Bid Managers</div>
+                    <p class="team-card-desc">Stop drowning in compliance matrices. Let the AI handle the 90% repetitive copy-pasting so you can focus on strategy and pricing.</p>
+                </div>
+                <!-- Card 2 -->
+                <div class="team-card">
+                    <div class="team-card-icon">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+                    </div>
+                    <div class="team-card-title">For IT Integrators</div>
+                    <p class="team-card-desc">Instantly recall technical specs from past projects. Ensure hardware and SLA compliance is accurate across every single tender you submit.</p>
+                </div>
+                <!-- Card 3 -->
+                <div class="team-card">
+                    <div class="team-card-icon">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>
+                    </div>
+                    <div class="team-card-title">For CEOs & Founders</div>
+                    <p class="team-card-desc">Increase your bid win rate without hiring more proposal writers. Submit 3x more tenders per month with your existing team.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Enterprise Power Subtitle Header Banner -->
+    <section style="background-color: var(--color-white); color: var(--color-navy-900); padding: 6rem 0; text-align: center; border-bottom: 1px solid var(--color-gray-300); border-top: 1px solid var(--color-gray-300);">
+        <div class="container">
+            <h2 style="font-size: 2.75rem; font-weight: 900; letter-spacing: -0.04em; margin-bottom: 1rem;">Enterprise Power. <span style="color: var(--color-brand-600);">Startup Speed.</span></h2>
+            <p style="font-size: 1.1rem; color: var(--color-gray-600); max-width: 650px; margin: 0 auto; line-height: 1.6;">Everything you need to crush 100-page tenders, without the 3-month enterprise setup.</p>
+        </div>
+    </section>
+
+    <!-- Product Features and System Specifications Section -->
+    <section class="features-section" id="features">
+        <div class="container">
+            <div class="section-header">
+                <span class="badge-eyebrow">SYSTEM SPECIFICATIONS</span>
+                <h2 class="section-title">Engine Features & Security Levels</h2>
+                <p class="section-desc">Fully audited pipeline details built for enterprise data privacy, accuracy validation, and formatting integrity.</p>
+            </div>
+
+            <table class="features-table">
+                <thead>
+                    <tr>
+                        <th style="width: 30%">Capability</th>
+                        <th style="width: 50%">Specification Details</th>
+                        <th style="width: 20%">Compliance / Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="feature-cell-title">Confidence scoring (High/Medium/Low)</td>
+                        <td class="feature-cell-desc">Calculated dynamically based on vector cosine similarity thresholds.</td>
+                        <td><span class="feature-tag-badge">High Precision</span></td>
+                    </tr>
+                    <tr>
+                        <td class="feature-cell-title">DOCX export — single response</td>
+                        <td class="feature-cell-desc">Generates a fully styled Word document matching corporate design.</td>
+                        <td><span class="feature-tag-badge">Enabled</span></td>
+                    </tr>
+                    <tr>
+                        <td class="feature-cell-title">DOCX export — batch results</td>
+                        <td class="feature-cell-desc">Compiles a multi-tab structured Word or Excel summary of all processed inputs.</td>
+                        <td><span class="feature-tag-badge">Full Batch Report</span></td>
+                    </tr>
+                    <tr>
+                        <td class="feature-cell-title">Format-lock DOCX template filling</td>
+                        <td class="feature-cell-desc">Injects answers directly into client original proposal questionnaires without breaking tables.</td>
+                        <td><span class="feature-tag-badge">Client Template Lock</span></td>
+                    </tr>
+                    <tr>
+                        <td class="feature-cell-title">Document delete from knowledge base</td>
+                        <td class="feature-cell-desc">Per-tenant logical partition delete from ChromaDB index.</td>
+                        <td><span class="feature-tag-badge">Tenant Isolated</span></td>
+                    </tr>
+                    <tr>
+                        <td class="feature-cell-title">Knowledge base reset</td>
+                        <td class="feature-cell-desc">Complete purge of customer document vector index instantly upon request.</td>
+                        <td><span class="feature-tag-badge">Per-Tenant Purge</span></td>
+                    </tr>
+                    <tr>
+                        <td class="feature-cell-title">File validation (magic bytes)</td>
+                        <td class="feature-cell-desc">Verifies true file types of uploaded documents via file headers (PDF & DOCX).</td>
+                        <td><span class="feature-tag-badge">Strict Checking</span></td>
+                    </tr>
+                    <tr>
+                        <td class="feature-cell-title">Scanned PDF detection</td>
+                        <td class="feature-cell-desc">Scans and detects image-only/scanned documents early and raises warning.</td>
+                        <td><span class="feature-tag-badge">Fail Early Guard</span></td>
+                    </tr>
+                    <tr>
+                        <td class="feature-cell-title">Styled DOCX generation with markdown parsing</td>
+                        <td class="feature-cell-desc">Converts markdown bold, italic, code-blocks, and tables into original MS Word layouts.</td>
+                        <td><span class="feature-tag-badge">Active</span></td>
+                    </tr>
+                    <tr>
+                        <td class="feature-cell-title">Batch DOCX multi-sheet report</td>
+                        <td class="feature-cell-desc">Consolidates multiple batch worksheets into individual output tables.</td>
+                        <td><span class="feature-tag-badge">Supported</span></td>
+                    </tr>
+                    <tr>
+                        <td class="feature-cell-title">RFP template fill (placeholder replacement)</td>
+                        <td class="feature-cell-desc">Locates key placeholders and swaps them with cited RAG responses.</td>
+                        <td><span class="feature-tag-badge">Enabled</span></td>
+                    </tr>
+                    <tr>
+                        <td class="feature-cell-title">Diff highlighting on template fills</td>
+                        <td class="feature-cell-desc">Visually displays delta changes between original prompts and generated text.</td>
+                        <td><span class="feature-tag-badge">Included</span></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section class="pricing-section" id="pricing">
+        <div class="container">
+            <div class="pricing-header">
+                <h2 class="pricing-title">Transparent Pricing</h2>
+                <p class="pricing-subtitle">All plans include unlimited users with all features.</p>
+            </div>
+            
+            <div class="pricing-grid">
+                <!-- Growth Card -->
+                <div class="pricing-card">
+                    <div>
+                        <div class="plan-name" style="font-size: 1.1rem; color: var(--color-gray-600); text-transform: uppercase; letter-spacing: 0.05em;">Growth</div>
+                        <div class="price-num">₹15,000<span style="font-size: 1rem; color: var(--color-gray-600); font-weight: normal;"> /mo</span></div>
+                        <div class="price-period">paid yearly</div>
+                        <ul class="price-features">
+                            <li>
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg>
+                                5 Active Concurrent RFPs
+                            </li>
+                            <li>
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg>
+                                3 Consolidated User Seats
+                            </li>
+                            <li>
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg>
+                                50 Document Indexes
+                            </li>
+                            <li>
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg>
+                                Secure RAG Vector Partition
+                            </li>
+                            <li>
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg>
+                                Standard SLA Support
+                            </li>
+                            <li>
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg>
+                                Offline Local Fallback Cache
+                            </li>
+                        </ul>
+                    </div>
+                    <div>
+                        <form class="pricing-card-form" onsubmit="handleUpgradeSubmit(event, 'Growth', 'https://rzp.io/rzp/4tjCO7XE')">
+                            <input type="email" placeholder="name@company.com" required>
+                            <button type="submit" class="btn btn-primary" style="padding: 0.5rem 1rem; font-size: 0.8rem;">Upgrade</button>
+                        </form>
+                    </div>
+                </div>
+
+                <!-- Scale Card -->
+                <div class="pricing-card featured">
+                    <div>
+                        <div class="plan-name" style="font-size: 1.1rem; color: var(--color-brand-600); text-transform: uppercase; letter-spacing: 0.05em; font-weight: 800;">Scale</div>
+                        <div class="price-num">₹25,000<span style="font-size: 1rem; color: var(--color-gray-600); font-weight: normal;"> /mo</span></div>
+                        <div class="price-period">paid yearly</div>
+                        <ul class="price-features">
+                            <li>
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg>
+                                20 Active Concurrent RFPs
+                            </li>
+                            <li>
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg>
+                                10 Consolidated User Seats
+                            </li>
+                            <li>
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg>
+                                500 Document Indexes
+                            </li>
+                            <li>
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg>
+                                Dedicated Priority Vector Index
+                            </li>
+                            <li>
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg>
+                                24/7 SLA Priority Support
+                            </li>
+                            <li>
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg>
+                                Advanced Word (.docx) Exporters
+                            </li>
+                        </ul>
+                    </div>
+                    <div>
+                        <form class="pricing-card-form" onsubmit="handleUpgradeSubmit(event, 'Scale', 'https://rzp.io/rzp/ZJmTZz3')">
+                            <input type="email" placeholder="name@company.com" required>
+                            <button type="submit" class="btn btn-primary" style="padding: 0.5rem 1rem; font-size: 0.8rem;">Upgrade</button>
+                        </form>
+                    </div>
+                </div>
+
+                <!-- Enterprise Card -->
+                <div class="pricing-card">
+                    <div>
+                        <div class="plan-name" style="font-size: 1.1rem; color: var(--color-gray-600); text-transform: uppercase; letter-spacing: 0.05em;">Enterprise</div>
+                        <div class="price-num">₹55,000<span style="font-size: 1rem; color: var(--color-gray-600); font-weight: normal;"> /mo</span></div>
+                        <div class="price-period">paid yearly</div>
+                        <ul class="price-features">
+                            <li>
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg>
+                                Unlimited RFPs & Batches
+                            </li>
+                            <li>
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg>
+                                30 Consolidated User Seats
+                            </li>
+                            <li>
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg>
+                                Unlimited Documents
+                            </li>
+                            <li>
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg>
+                                Dedicated Vector Instance
+                            </li>
+                            <li>
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg>
+                                Custom Legal SLA Contracts
+                            </li>
+                            <li>
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg>
+                                Custom API Models Support
+                            </li>
+                        </ul>
+                    </div>
+                    <div>
+                        <form class="pricing-card-form" onsubmit="handleUpgradeSubmit(event, 'Enterprise', 'https://rzp.io/rzp/oYCY6c2')">
+                            <input type="email" placeholder="name@company.com" required>
+                            <button type="submit" class="btn btn-primary" style="padding: 0.5rem 1rem; font-size: 0.8rem;">Upgrade</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Schedule Product Demo Section -->
+    <section class="demo-section" id="demo-form">
+        <div class="container demo-grid">
+            <div>
+                <h2 class="demo-left-title">Schedule Product Demo</h2>
+                <p class="demo-left-desc">Product Demonstration of FlashRFP.ai for your business. See how FlashRFP.ai can help you Win More, Faster.</p>
+                
+                <div class="brand-logos-title">TRUSTED BY TEAMS FROM STRATEGIC INFLUENCERS</div>
+                <div class="logo-grid">
+                    <div class="logo-item">
+                        <span class="logo-name">Infosys</span>
+                        <a href="#" class="logo-link">Their story</a>
+                    </div>
+                    <div class="logo-item">
+                        <span class="logo-name">Wipro</span>
+                        <a href="#" class="logo-link">Their story</a>
+                    </div>
+                    <div class="logo-item">
+                        <span class="logo-name">Mphasis</span>
+                        <a href="#" class="logo-link">Their story</a>
+                    </div>
+                    <div class="logo-item">
+                        <span class="logo-name">Cognizant</span>
+                        <a href="#" class="logo-link">Their story</a>
+                    </div>
+                    <div class="logo-item">
+                        <span class="logo-name">LTIMindtree</span>
+                        <a href="#" class="logo-link">Their story</a>
+                    </div>
+                    <div class="logo-item">
+                        <span class="logo-name">Zensar</span>
+                        <a href="#" class="logo-link">Their story</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div>
+                <form class="demo-form" onsubmit="handleDemoSubmit(event)">
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="first-name">First name <span>*</span></label>
+                            <input type="text" id="first-name" required placeholder="Jane">
+                        </div>
+                        <div class="form-group">
+                            <label for="last-name">Last name <span>*</span></label>
+                            <input type="text" id="last-name" required placeholder="Doe">
+                        </div>
+                        <div class="form-full">
+                            <div class="form-group">
+                                <label for="email">Email <span>*</span></label>
+                                <input type="email" id="email" required placeholder="jane.doe@company.com">
+                            </div>
+                        </div>
+                        <div class="form-full">
+                            <div class="form-group">
+                                <label for="phone">Mobile phone number</label>
+                                <input type="tel" id="phone" placeholder="+91 98765 43210">
+                            </div>
+                        </div>
+                        <div class="form-full">
+                            <div class="form-group">
+                                <label for="sector">Sector <span>*</span></label>
+                                <select id="sector" required>
+                                    <option value="">Please Select</option>
+                                    <option value="it">Information Technology</option>
+                                    <option value="finance">Banking & Finance</option>
+                                    <option value="legal">Legal & Compliance</option>
+                                    <option value="saas">SaaS Enterprise</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-full">
+                            <div class="form-group">
+                                <label for="rfps">Estimated Number of RFPs per year <span>*</span></label>
+                                <select id="rfps" required>
+                                    <option value="">Please Select</option>
+                                    <option value="lt50">Less than 50</option>
+                                    <option value="50-200">50 - 200</option>
+                                    <option value="gt200">More than 200</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-primary" style="width: 100%;">Book Demo</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container footer-grid">
+            <div>
+                <div class="footer-logo">
+                    <svg class="logo-icon-svg" style="width:24px; height:24px; border-radius:6px;" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect width="32" height="32" rx="8" fill="#0f172a" />
+                        <path d="M9 8H23V12H13V15H21V19H13V24H9V8Z" fill="#0066ff" />
+                    </svg>
+                    FlashRFP.ai
+                </div>
+                <p class="footer-desc">Automate your complex RFP, DDQ, and Security Questionnaire response processes in seconds with secure tenant vector isolation.</p>
+                <p style="font-size: 0.72rem;">© 2026 FlashRFP.ai. All rights reserved.</p>
+            </div>
+            <div>
+                <div class="footer-title">Product</div>
+                <ul class="footer-links">
+                    <li class="footer-link"><a href="#">Overview</a></li>
+                    <li class="footer-link"><a href="#">Security</a></li>
+                    <li class="footer-link"><a href="#">Integrations</a></li>
+                    <li class="footer-link"><a href="#">Changelog</a></li>
+                </ul>
+            </div>
+            <div>
+                <div class="footer-title">Solutions</div>
+                <ul class="footer-links">
+                    <li class="footer-link"><a href="#">RFP Software</a></li>
+                    <li class="footer-link"><a href="#">DDQ Software</a></li>
+                    <li class="footer-link"><a href="#">Security Questionnaires</a></li>
+                </ul>
+            </div>
+            <div>
+                <div class="footer-title">Console</div>
+                <ul class="footer-links">
+                    <li class="footer-link"><a href="http://localhost:8501" target="_blank">Proposal Portal</a></li>
+                    <li class="footer-link"><a href="http://localhost:8502" target="_blank">Admin Control Panel</a></li>
+                    <li class="footer-link"><a href="#pricing">Upgrade Account</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="container footer-bottom">
+            <div>Status: <span style="color: var(--color-brand-600); font-weight: bold;">🟢 Platform Online</span></div>
+            <div style="display: flex; gap: 1.5rem;">
+                <a href="#">Privacy Policy</a>
+                <a href="#">Terms of Service</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Smoothly prefill email and scroll when using the Hero capture form
+        document.querySelector('.email-capture-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const emailVal = this.querySelector('.email-input').value;
+            document.getElementById('email').value = emailVal;
+            document.getElementById('demo-form').scrollIntoView({ behavior: 'smooth' });
+        });
+
+        // Resolve base API URL dynamically (falls back to localhost:8000 when opened offline as file:///)
+        const getApiUrl = (endpoint) => {
+            const base = window.location.protocol === 'file:' ? 'http://localhost:8000' : '';
+            return base + endpoint;
+        };
+
+        // Submit Demo Booking lead data to API
+        async function handleDemoSubmit(event) {
+            event.preventDefault();
+            const form = event.target;
+            const firstName = document.getElementById('first-name').value;
+            const lastName = document.getElementById('last-name').value;
+            const email = document.getElementById('email').value;
+            const phone = document.getElementById('phone').value;
+            const sector = document.getElementById('sector').value;
+            const rfps = document.getElementById('rfps').value;
+
+            try {
+                const response = await fetch(getApiUrl('/api/book-demo'), {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        first_name: firstName,
+                        last_name: lastName,
+                        email: email,
+                        phone: phone,
+                        sector: sector,
+                        rfps: rfps
+                    })
+                });
+                const result = await response.json();
+                if (response.ok) {
+                    // Dynamically render a gorgeous glassmorphic pending notice inside the form wrapper
+                    form.innerHTML = `
+                        <div class="demo-success-panel" style="text-align: center; padding: 3rem 2rem; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-radius: 16px; backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); box-shadow: 0 10px 30px rgba(0,0,0,0.25);">
+                            <div style="font-size: 3.5rem; margin-bottom: 1.25rem;">📅</div>
+                            <h3 style="font-family: 'Plus Jakarta Sans', sans-serif; font-size: 1.45rem; font-weight: 850; color: #ffffff; margin-bottom: 0.5rem; letter-spacing: -0.02em;">Demo Slot Registered!</h3>
+                            <div style="display: inline-flex; align-items: center; gap: 0.5rem; background: rgba(245,159,0,0.15); border: 1px solid rgba(245,159,0,0.25); color: #f59f00; font-size: 0.75rem; font-weight: 700; text-transform: uppercase; padding: 0.3rem 0.85rem; border-radius: 30px; margin-bottom: 1.5rem; letter-spacing: 0.05em;">
+                                Pending Administrator Approval
+                            </div>
+                            <p style="font-family: 'Inter', sans-serif; font-size: 0.92rem; color: rgba(255,255,255,0.65); line-height: 1.6; max-width: 420px; margin: 0 auto;">
+                                Your demo request is queued in the FlashRFP coordinator pipeline. Once the administrator approves the request, a secure Google Meet invitation will be dispatched to <strong>${email}</strong>.
+                            </p>
+                        </div>
+                    `;
+                } else {
+                    alert('Registration Status: ' + result.error);
+                }
+            } catch (err) {
+                alert('Connection failure: ' + err.message);
+            }
+        }
+
+        // Submit Subscription Upgrade lead data to API and redirect to billing gateway
+        async function handleUpgradeSubmit(event, planName, gatewayUrl) {
+            event.preventDefault();
+            const emailInput = event.target.querySelector('input[type="email"]');
+            const emailVal = emailInput.value;
+
+            try {
+                await fetch(getApiUrl('/api/upgrade'), {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        email: emailVal,
+                        plan: planName
+                    })
+                });
+            } catch (err) {
+                console.error('Failed to log upgrade intent:', err);
+            }
+            
+            // Open secure payment checkout
+            window.open(gatewayUrl, '_blank');
+            emailInput.value = '';
+            alert('Lead logged successfully! Opening secure Razorpay billing gateway...');
+        }
+    </script>
+</body>
+</html>
