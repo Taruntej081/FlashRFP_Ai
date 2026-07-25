@@ -32,10 +32,20 @@ from roi_tracker import (
     render_roi_dashboard_main
 )
 
-# Load environment variables
+# Load environment variables — local .env first, then Streamlit Cloud secrets override
 base_dir = os.path.dirname(os.path.abspath(__file__))
 dotenv_path = os.path.join(base_dir, ".env")
 load_dotenv(dotenv_path=dotenv_path, override=True)
+
+def _cfg(key: str, default: str = "") -> str:
+    """Read config from st.secrets (Streamlit Cloud) first, then os.environ/.env."""
+    try:
+        val = st.secrets.get(key, None)
+        if val:
+            return str(val)
+    except Exception:
+        pass
+    return os.getenv(key, default)
 
 # Page configuration
 st.set_page_config(
@@ -961,8 +971,8 @@ provider_models = {
     "OpenRouter": ["google/gemini-2.5-flash", "google/gemini-2.5-pro", "meta-llama/llama-3.3-70b-instruct"]
 }
 
-# Resolve active provider from environment variable
-env_provider = os.getenv("ACTIVE_PROVIDER", "Google Gemini").strip()
+# Resolve active provider — reads st.secrets on Streamlit Cloud, os.getenv locally
+env_provider = _cfg("ACTIVE_PROVIDER", "Google Gemini").strip()
 if env_provider not in ["Google Gemini", "Groq LPU", "OpenRouter"]:
     env_provider = "Google Gemini"
 st.session_state.active_provider = env_provider
@@ -975,19 +985,19 @@ selected_model = st.session_state[f"model_{active_provider}"]
 
 if active_provider == "Google Gemini":
     provider_key = "gemini"
-    api_key = os.getenv("GEMINI_API_KEY")
+    api_key = _cfg("GEMINI_API_KEY")
     provider = "Google Gemini"
 elif active_provider == "Groq LPU":
     provider_key = "groq"
-    api_key = os.getenv("GROQ_API_KEY")
+    api_key = _cfg("GROQ_API_KEY")
     provider = "Groq LPU"
 else:
     provider_key = "openrouter"
-    api_key = os.getenv("OPENROUTER_API_KEY")
+    api_key = _cfg("OPENROUTER_API_KEY")
     provider = "OpenRouter"
 
-# Toggle demo mode based on backend environment variable
-env_demo_mode = os.getenv("DEMO_MODE", "False").strip().lower() == "true"
+# Toggle demo mode based on environment variable
+env_demo_mode = _cfg("DEMO_MODE", "False").strip().lower() == "true"
 if env_demo_mode:
     st.session_state.demo_mode = True
     api_key = "demo_mode_key"

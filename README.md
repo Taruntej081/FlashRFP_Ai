@@ -8,6 +8,7 @@
 ![ChromaDB](https://img.shields.io/badge/ChromaDB-0.5.4-green)
 ![Gemini](https://img.shields.io/badge/Google%20Gemini-AI-orange?logo=google)
 ![License](https://img.shields.io/badge/License-MIT-purple)
+[![Open in Streamlit](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://share.streamlit.io/deploy?repository=Taruntej081/FlashRFP_Ai&branch=main&mainModule=app.py)
 
 ---
 
@@ -58,7 +59,32 @@ FlashRFP.AI
 
 ---
 
-## ⚡ Quick Start
+## ☁️ Deploy to Streamlit Cloud (One Click)
+
+[![Open in Streamlit](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://share.streamlit.io/deploy?repository=Taruntej081/FlashRFP_Ai&branch=main&mainModule=app.py)
+
+### Step-by-Step
+
+1. Click the **"Open in Streamlit"** badge above (or go to [share.streamlit.io](https://share.streamlit.io))
+2. Sign in with your GitHub account
+3. Select repo: `Taruntej081/FlashRFP_Ai` | Branch: `main` | Main file: `app.py`
+4. Click **"Advanced settings"** → **"Secrets"** and paste:
+
+```toml
+GEMINI_API_KEY = "your_gemini_api_key_here"
+GROQ_API_KEY = ""
+OPENROUTER_API_KEY = ""
+ACTIVE_PROVIDER = "Google Gemini"
+DEMO_MODE = "False"
+```
+
+5. Click **Deploy** — your app will be live at `https://your-app-name.streamlit.app` 🎉
+
+> **Get a free Gemini API key:** [aistudio.google.com](https://aistudio.google.com/) → API Keys → Create API Key
+
+---
+
+## ⚡ Quick Start (Local)
 
 ### Prerequisites
 - Python 3.12+
