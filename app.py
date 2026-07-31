@@ -852,6 +852,25 @@ def inject_custom_css():
         box-shadow: 0 0 0 4px rgba(16, 185, 129, 0.18) !important;
     }}
 
+    /* HeroUI v3 Three-Dots Animated Menu Button */
+    div[data-testid="stPopover"] button {{
+        background: #ffffff !important;
+        border: 1px solid {glass_border} !important;
+        border-radius: 12px !important;
+        padding: 0.3rem 0.75rem !important;
+        font-size: 1.25rem !important;
+        font-weight: 800 !important;
+        color: {accent} !important;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.03) !important;
+        transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1) !important;
+    }}
+    div[data-testid="stPopover"] button:hover {{
+        transform: rotate(90deg) scale(1.1) !important;
+        border-color: {accent} !important;
+        box-shadow: 0 6px 18px {glow} !important;
+        background: rgba(16, 185, 129, 0.08) !important;
+    }}
+
     .stTextArea label, .stTextInput label, .stFileUploader label, .stSelectbox label {{
         font-size: 0.78rem !important; font-weight: 700 !important;
         color: {text_muted} !important; letter-spacing: 0.05em !important;
@@ -1070,8 +1089,8 @@ def get_db_client():
 
 db_client = get_db_client()
 
-# Brand Header & Theme Studio Bar
-col_hdr_brand, col_hdr_theme = st.columns([7, 5])
+# Brand Header & User Profile Bar
+col_hdr_brand, col_hdr_user = st.columns([4.5, 7.5])
 with col_hdr_brand:
     st.markdown("""
     <div style="display:flex; align-items:center; gap:0.6rem; padding: 0.2rem 0 0.5rem 0;">
@@ -1093,24 +1112,55 @@ with col_hdr_brand:
     </div>
     """, unsafe_allow_html=True)
 
-with col_hdr_theme:
+with col_hdr_user:
     theme_options = {
         "emerald_aurora": "🌿 Emerald Aurora (Default Glass)",
         "midnight_obsidian": "🌃 Midnight Obsidian (Deep Dark)",
         "nordic_slate": "🧊 Nordic Slate (Corporate)",
         "royal_indigo": "🔮 Royal Indigo (Luxury Mesh)"
     }
-    current_preset = st.session_state.get("theme_preset", "emerald_aurora")
-    selected_top_preset = st.selectbox(
-        "🎨 Select App Visual Theme:",
-        options=list(theme_options.keys()),
-        format_func=lambda x: theme_options[x],
-        index=list(theme_options.keys()).index(current_preset) if current_preset in theme_options else 0,
-        key="top_header_theme_preset_selector"
-    )
-    if selected_top_preset != current_preset:
-        st.session_state.theme_preset = selected_top_preset
-        st.rerun()
+    col_uinfo, col_menu = st.columns([8.8, 1.2])
+    with col_uinfo:
+        seats_allocated = "3 / 5 Seats Used" if current_plan in ["trial", "growth"] else "8 / 10 Seats Used"
+        if current_plan == "trial":
+            plan_badge_html = f'<span class="badge badge-yellow" style="font-size:0.75rem; padding:3px 10px;">⏳ 7-Day Trial ({trial_days}d left)</span>'
+        else:
+            plan_badge_html = f'<span class="badge badge-green" style="font-size:0.75rem; padding:3px 10px;">🟢 {current_plan.upper()} PLAN</span>'
+            
+        st.markdown(f"""
+        <div style="display:flex; align-items:center; justify-content:flex-end; gap:0.65rem; padding-top:0.35rem; flex-wrap:nowrap;">
+            <div style="text-align:right; margin-right:0.3rem;">
+                <div style="font-size:0.9rem; font-weight:800; color:{text}; line-height:1.2;">👤 {st.session_state.get('name', 'User')}</div>
+                <div style="font-size:0.75rem; color:{text_muted}; font-weight:600;">{user_email}</div>
+            </div>
+            {plan_badge_html}
+            <span class="badge badge-blue" style="font-size:0.75rem; padding:3px 10px;">👥 {seats_allocated}</span>
+        </div>
+        """, unsafe_allow_html=True)
+        
+    with col_menu:
+        with st.popover("⋮", help="User Account, Seats Allocation & Visual Settings"):
+            st.markdown("#### 👤 Account Details")
+            st.markdown(f"**Name**: {st.session_state.get('name', 'User')}")
+            st.markdown(f"**Email**: `{user_email}`")
+            st.markdown(f"**Subscription Plan**: `{current_plan.upper()}`")
+            st.markdown(f"**Team Seats Allocation**: `{seats_allocated}`")
+            st.divider()
+            
+            st.markdown("#### 🎨 App Visual Theme")
+            current_preset = st.session_state.get("theme_preset", "emerald_aurora")
+            selected_top_preset = st.selectbox(
+                "Select Visual Theme:",
+                options=list(theme_options.keys()),
+                format_func=lambda x: theme_options[x],
+                index=list(theme_options.keys()).index(current_preset) if current_preset in theme_options else 0,
+                key="top_header_theme_preset_selector"
+            )
+            if selected_top_preset != current_preset:
+                st.session_state.theme_preset = selected_top_preset
+                st.rerun()
+            st.divider()
+            authenticator.logout(button_name="🔓 Logout", location="main", key="top_logout_btn")
 
 st.markdown('<div class="gradient-divider" style="margin-bottom:1.5rem;"></div>', unsafe_allow_html=True)
 
