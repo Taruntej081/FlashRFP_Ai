@@ -994,15 +994,15 @@ selected_model = st.session_state[f"model_{active_provider}"]
 
 if active_provider == "Google Gemini":
     provider_key = "gemini"
-    api_key = _cfg("GEMINI_API_KEY")
+    api_key = st.session_state.get("user_gemini_key", "").strip() or _cfg("GEMINI_API_KEY")
     provider = "Google Gemini"
 elif active_provider == "Groq LPU":
     provider_key = "groq"
-    api_key = _cfg("GROQ_API_KEY")
+    api_key = st.session_state.get("user_groq_key", "").strip() or _cfg("GROQ_API_KEY")
     provider = "Groq LPU"
 else:
     provider_key = "openrouter"
-    api_key = _cfg("OPENROUTER_API_KEY")
+    api_key = st.session_state.get("user_openrouter_key", "").strip() or _cfg("OPENROUTER_API_KEY")
     provider = "OpenRouter"
 
 # Toggle demo mode based on environment variable
@@ -1198,6 +1198,20 @@ with st.sidebar:
         st.rerun()
 
     authenticator.logout(button_name="🔓 Logout", location="sidebar", key="sidebar_logout_btn")
+    
+    st.write("")
+    with st.expander("🔑 API Key Settings", expanded=False):
+        st.markdown("<div style='font-size:0.78rem; color:#64748b; margin-bottom:0.5rem;'>Override or set your Gemini API key if missing or invalid:</div>", unsafe_allow_html=True)
+        user_key_input = st.text_input(
+            "Google Gemini API Key",
+            value=st.session_state.get("user_gemini_key", ""),
+            type="password",
+            placeholder="AIzaSy...",
+            key="user_gemini_key_input_sb"
+        )
+        if user_key_input != st.session_state.get("user_gemini_key", ""):
+            st.session_state.user_gemini_key = user_key_input
+            st.rerun()
     
     # Render ROI & Time Saved Dashboard in sidebar
     render_roi_dashboard()
