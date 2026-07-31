@@ -812,7 +812,8 @@ def inject_custom_css():
     }}
 
     .stTextArea textarea, .stTextInput input {{
-        background: transparent !important;
+        background: #ffffff !important;
+        background-color: #ffffff !important;
         border: none !important;
         outline: none !important;
         box-shadow: none !important;
@@ -822,6 +823,14 @@ def inject_custom_css():
         font-size: 0.92rem !important;
         padding: 0.85rem 1.1rem !important;
         caret-color: {accent} !important;
+    }}
+    
+    /* Force white background on all BaseUI inner wrappers */
+    div[data-baseweb="textarea"] > div > div,
+    div[data-baseweb="input"] > div > div,
+    div[data-baseweb="base-input"] > div > div {{
+        background: #ffffff !important;
+        background-color: #ffffff !important;
     }}
 
     .stTextArea textarea:focus, .stTextInput input:focus {{
