@@ -10,7 +10,6 @@ showErrorDetails = true
 toolbarMode = "minimal"
 
 [server]
-port = 8502
 runOnSave = true
 maxUploadSize = 200
 enableXsrfProtection = true
