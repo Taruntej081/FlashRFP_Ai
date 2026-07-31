@@ -1085,7 +1085,8 @@ def check_rate_limit(action_key: str = "generate") -> tuple[bool, int]:
 
 @st.cache_resource
 def get_db_client():
-    return get_chroma_client(db_path="chroma_db")
+    in_mem = _cfg("CHROMA_IN_MEMORY", "False").strip().lower() == "true"
+    return get_chroma_client(db_path="chroma_db", force_in_memory=in_mem)
 
 db_client = get_db_client()
 

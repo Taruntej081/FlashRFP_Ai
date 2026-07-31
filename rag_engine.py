@@ -360,11 +360,20 @@ def chunk_text(text: str, chunk_size: int = 1000, chunk_overlap: int = 200) -> l
         
     return [c for c in chunks if c]
 
-def get_chroma_client(db_path="chroma_db"):
+def get_chroma_client(db_path="chroma_db", force_in_memory=False):
     """
-    Initializes and returns a persistent Chroma client.
+    Initializes and returns a Chroma client.
+    Supports in-memory temporary storage (chromadb.Client()) or persistent storage with fallback.
     """
-    return chromadb.PersistentClient(path=db_path)
+    use_mem = force_in_memory or os.getenv("CHROMA_IN_MEMORY", "false").lower() in ["true", "1", "yes"]
+    if use_mem:
+        return chromadb.Client()
+    
+    try:
+        return chromadb.PersistentClient(path=db_path)
+    except Exception:
+        # Safe fallback to temporary in-memory vector database
+        return chromadb.Client()
 
 def get_or_create_collection(client, api_key=None, collection_name="rfp_knowledge_base"):
     """
